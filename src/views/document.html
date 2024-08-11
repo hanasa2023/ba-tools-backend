@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ba Tools Api</title>
+    <link rel="icon" href="/logo/logo.ico" type="image/x-icon" sizes="16x16" />
+    <link
+      rel="icon"
+      href="/logo/logo-32x32.ico"
+      type="image/x-icon"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="/logo/logo-64x64.ico"
+      type="image/x-icon"
+      sizes="64x64"
+    />
+    <link
+      rel="icon"
+      href="/logo/logo-128x128.ico"
+      type="image/x-icon"
+      sizes="128x128"
+    />
+    <link
+      rel="icon"
+      href="/logo/logo-256x256.ico"
+      type="image/x-icon"
+      sizes="256x256"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "TitilliumWeb";
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      body.dark-theme {
+        background-color: #121212;
+        color: white;
+      }
+      .theme-toggle {
+        cursor: pointer;
+        padding: 8px;
+        background-color: transparent;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 1rem;
+        margin-left: auto;
+        margin-right: 1rem;
+      }
+      .theme-toggle.dark {
+        background-color: transparent;
+        color: #fff;
+      }
+      .app-bar {
+        display: flex;
+        background-color: #dd077d;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      .app-bar img {
+        width: 60px;
+        height: 60px;
+        margin-right: 1rem;
+      }
+      .app-bar span {
+        font-size: larger;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+      }
+      .use-method ul {
+        padding: 0;
+      }
+      .use-method li {
+        text-align: left;
+        margin-bottom: 1rem;
+      }
+      .footer {
+        font-family: "Titillium Web";
+        background-color: #079cf1;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-family: "Titillium Web";
+      }
+      p {
+        margin: 1rem 0 0;
+        font-size: 1.25rem;
+      }
+      a {
+        font-family: "Titillium Web";
+      }
+      span {
+        font-family: "Titillium Web";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-bar">
+      <img src="/logo.png" alt="logo" />
+      <span>Ba Tools Api</span>
+      <button class="theme-toggle" id="theme-toggle">
+        <span class="material-icons" id="theme-icon">light_mode</span>
+      </button>
+    </div>
+
+    <div class="main-content">
+      <div class="introduction">
+        <img src="/logo.png" alt="logo" />
+        <h1>欢迎使用Ba Tools API</h1>
+        <p>
+          此项目使用
+          <a href="https://github.com/SchaleDB/SchaleDB">Schale DB</a>
+          作为数据源，并在此基础上新增了学生的live 2d图像
+        </p>
+        <h2>✨ 使用方法</h2>
+        <div class="use-method">
+          <ul>
+            <li>
+              此 api 的 url 路径与 Schale DB 的路径基本相同 <br />
+              如果你想访问 Schale DB 中
+              <code>data/zh/students.json</code> 的数据，那么你可以通过
+              <code>GET</code>
+              <a href="https://api.hanasaki.tech/data/zh/students.json"
+                >https://api.hanasaki.tech/data/zh/students.json</a
+              >
+              来访问该数据
+            </li>
+            <li>
+              新增 live 2D image 的请求路径为
+              <code>images/student/l2d/&lt;学生id&gt;.webp</code> <br />例如：
+              <a href="https://api.hanasaki.tech/images/studetn/l2d/10000.webp"
+                >https://api.hanasaki.tech/images/student/l2d/10000.webp</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2024-2025 Ba Tools Api. All rights reserved. 备案号：<a
+        href="https://beian.miit.gov.cn/#/Integrated/index"
+        >赣ICP备2023015459号-2</a
+      >
+    </div>
+
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme");
+        themeToggle.classList.toggle("dark");
+        themeIcon.textContent = document.body.classList.contains("dark-theme")
+          ? "dark_mode"
+          : "light_mode";
+      });
+    </script>
+  </body>
+</html>
